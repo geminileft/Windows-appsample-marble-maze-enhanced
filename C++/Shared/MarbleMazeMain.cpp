@@ -60,38 +60,24 @@ MarbleMazeMain::MarbleMazeMain(const std::shared_ptr<DX::DeviceResources>& devic
     m_resetCamera = true;
     m_resetMarbleRotation = true;
 
-    // Checkpoints (from start to goal).
-    // TODO: Move to config
-
-    // auto myReader = ref new BasicReaderWriter();
-    // myReader->ReadData()
-    // Platform::Array<byte>^ bytecode = myReader->ReadData(L"MyText.txt");
-
-    // std::string s((const char*)&(bytecode[0]), bytecode->Length);
-    // std::wstring w_str = std::wstring(s.begin(), s.end());
-    // const wchar_t* w_chars = w_str.c_str();
-
-    // auto newString = ref new Platform::String(w_chars);
-    // std::wstring w_str = std::wstring(s.begin(), s.end());
-
-    // auto jsonObject = JsonObject::Parse(newString);
-    // auto x = jsonObject->GetNamedString("key", "default");
-
-    auto jsonObject2 = FileUtils::loadJsonFile(L"MyText.txt");
+    auto jsonObject2 = FileUtils::loadJsonFile(L"MyCheckpoints.txt");
 
     JsonArray^ y = jsonObject2->GetNamedArray("checkpoints");
     
     for (auto z : y) {
         auto myJVal = z->GetArray();
         auto n1 = myJVal->GetNumberAt(0);
-        int myIntVal = 2;
+        auto n2 = myJVal->GetNumberAt(1);
+        auto n3 = myJVal->GetNumberAt(2);
+        m_checkpoints.push_back(XMFLOAT3(n1, n2, n3)); // Start
     }
-    m_checkpoints.push_back(XMFLOAT3(45.7f, -43.6f, -45.0f)); // Start
-    m_checkpoints.push_back(XMFLOAT3(120.7f, -35.0f, -45.0f)); // Checkpoint 1
-    m_checkpoints.push_back(XMFLOAT3(297.6f, -194.6f, -45.0f)); // Checkpoint 2
-    m_checkpoints.push_back(XMFLOAT3(770.1f, -391.5f, -45.0f)); // Checkpoint 3
-    m_checkpoints.push_back(XMFLOAT3(552.0f, -148.6f, -45.0f)); // Checkpoint 4
-    m_checkpoints.push_back(XMFLOAT3(846.8f, -377.0f, -45.0f)); // Goal
+    
+    // m_checkpoints.push_back(XMFLOAT3(45.7f, -43.6f, -45.0f)); // Start
+    // m_checkpoints.push_back(XMFLOAT3(120.7f, -35.0f, -45.0f)); // Checkpoint 1
+    // m_checkpoints.push_back(XMFLOAT3(297.6f, -194.6f, -45.0f)); // Checkpoint 2
+    // m_checkpoints.push_back(XMFLOAT3(770.1f, -391.5f, -45.0f)); // Checkpoint 3
+    // m_checkpoints.push_back(XMFLOAT3(552.0f, -148.6f, -45.0f)); // Checkpoint 4
+    // m_checkpoints.push_back(XMFLOAT3(846.8f, -377.0f, -45.0f)); // Goal
 
     m_persistentState = ref new PersistentState();
     m_persistentState->Initialize(Windows::Storage::ApplicationData::Current->LocalSettings->Values, "MarbleMaze");

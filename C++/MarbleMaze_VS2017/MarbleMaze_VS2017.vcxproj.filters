@@ -184,6 +184,6 @@
     </Media>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Shared\MyText.txt" />
+    <Text Include="..\Shared\MyCheckpoints.txt" />
   </ItemGroup>
 </Project>
