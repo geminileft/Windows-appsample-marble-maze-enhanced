@@ -129,6 +129,7 @@
     <ClCompile Include="..\Shared\SampleOverlay.cpp" />
     <ClCompile Include="..\Shared\SDKMesh.cpp" />
     <ClCompile Include="..\Shared\UserInterface.cpp" />
+    <ClCompile Include="..\Shared\FileUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shared\App.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="..\Shared\SDKMesh.h" />
     <ClInclude Include="..\Shared\StepTimer.h" />
     <ClInclude Include="..\Shared\UserInterface.h" />
+    <ClInclude Include="..\Shared\FileUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\Shared\BasicPixelShader.hlsl" />
@@ -180,5 +182,8 @@
     <Media Include="Media\Audio\MenuSelect.wav">
       <Filter>Media\Audio</Filter>
     </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Shared\MyText.txt" />
   </ItemGroup>
 </Project>

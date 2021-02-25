@@ -11,11 +11,15 @@
 #include <DirectXColors.h> // For named colors
 #include "DirectXHelper.h" // For ThrowIfFailed
 
+#include "FileUtils.h"
+
 using namespace MarbleMaze;
 using namespace Windows::Gaming::Input;
 using namespace Platform::Collections;
 using namespace Windows::Foundation;
 using namespace Windows::System::Diagnostics;
+using namespace Windows::Data::Json;
+
 
 inline D2D1_RECT_F ConvertRect(Windows::Foundation::Size source)
 {
@@ -57,6 +61,31 @@ MarbleMazeMain::MarbleMazeMain(const std::shared_ptr<DX::DeviceResources>& devic
     m_resetMarbleRotation = true;
 
     // Checkpoints (from start to goal).
+    // TODO: Move to config
+
+    // auto myReader = ref new BasicReaderWriter();
+    // myReader->ReadData()
+    // Platform::Array<byte>^ bytecode = myReader->ReadData(L"MyText.txt");
+
+    // std::string s((const char*)&(bytecode[0]), bytecode->Length);
+    // std::wstring w_str = std::wstring(s.begin(), s.end());
+    // const wchar_t* w_chars = w_str.c_str();
+
+    // auto newString = ref new Platform::String(w_chars);
+    // std::wstring w_str = std::wstring(s.begin(), s.end());
+
+    // auto jsonObject = JsonObject::Parse(newString);
+    // auto x = jsonObject->GetNamedString("key", "default");
+
+    auto jsonObject2 = FileUtils::loadJsonFile(L"MyText.txt");
+
+    JsonArray^ y = jsonObject2->GetNamedArray("checkpoints");
+    
+    for (auto z : y) {
+        auto myJVal = z->GetArray();
+        auto n1 = myJVal->GetNumberAt(0);
+        int myIntVal = 2;
+    }
     m_checkpoints.push_back(XMFLOAT3(45.7f, -43.6f, -45.0f)); // Start
     m_checkpoints.push_back(XMFLOAT3(120.7f, -35.0f, -45.0f)); // Checkpoint 1
     m_checkpoints.push_back(XMFLOAT3(297.6f, -194.6f, -45.0f)); // Checkpoint 2
