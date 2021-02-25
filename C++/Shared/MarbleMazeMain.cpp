@@ -71,13 +71,6 @@ MarbleMazeMain::MarbleMazeMain(const std::shared_ptr<DX::DeviceResources>& devic
         auto n3 = myJVal->GetNumberAt(2);
         m_checkpoints.push_back(XMFLOAT3(n1, n2, n3)); // Start
     }
-    
-    // m_checkpoints.push_back(XMFLOAT3(45.7f, -43.6f, -45.0f)); // Start
-    // m_checkpoints.push_back(XMFLOAT3(120.7f, -35.0f, -45.0f)); // Checkpoint 1
-    // m_checkpoints.push_back(XMFLOAT3(297.6f, -194.6f, -45.0f)); // Checkpoint 2
-    // m_checkpoints.push_back(XMFLOAT3(770.1f, -391.5f, -45.0f)); // Checkpoint 3
-    // m_checkpoints.push_back(XMFLOAT3(552.0f, -148.6f, -45.0f)); // Checkpoint 4
-    // m_checkpoints.push_back(XMFLOAT3(846.8f, -377.0f, -45.0f)); // Goal
 
     m_persistentState = ref new PersistentState();
     m_persistentState->Initialize(Windows::Storage::ApplicationData::Current->LocalSettings->Values, "MarbleMaze");
