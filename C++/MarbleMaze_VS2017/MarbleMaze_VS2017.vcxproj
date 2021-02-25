@@ -246,6 +246,7 @@
     <ClCompile Include="..\Shared\Collision.cpp" />
     <ClCompile Include="..\Shared\DDSTextureLoader.cpp" />
     <ClCompile Include="..\Shared\DeviceResources.cpp" />
+    <ClCompile Include="..\Shared\FileUtils.cpp" />
     <ClCompile Include="..\Shared\LoadScreen.cpp" />
     <ClCompile Include="..\Shared\MarbleMazeMain.cpp" />
     <ClCompile Include="..\Shared\MediaStreamer.cpp" />
@@ -268,6 +269,7 @@
     <ClInclude Include="..\Shared\DeviceResources.h" />
     <ClInclude Include="..\Shared\DirectXHelper.h" />
     <ClInclude Include="..\Shared\DirectXSample.h" />
+    <ClInclude Include="..\Shared\FileUtils.h" />
     <ClInclude Include="..\Shared\LoadScreen.h" />
     <ClInclude Include="..\Shared\MarbleMazeMain.h" />
     <ClInclude Include="..\Shared\MediaStreamer.h" />
@@ -330,6 +332,9 @@
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.UniversalCRT.Debug, Version=10.0.17763.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Shared\MyCheckpoints.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

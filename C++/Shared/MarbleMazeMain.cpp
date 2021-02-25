@@ -11,11 +11,15 @@
 #include <DirectXColors.h> // For named colors
 #include "DirectXHelper.h" // For ThrowIfFailed
 
+#include "FileUtils.h"
+
 using namespace MarbleMaze;
 using namespace Windows::Gaming::Input;
 using namespace Platform::Collections;
 using namespace Windows::Foundation;
 using namespace Windows::System::Diagnostics;
+using namespace Windows::Data::Json;
+
 
 inline D2D1_RECT_F ConvertRect(Windows::Foundation::Size source)
 {
@@ -56,13 +60,17 @@ MarbleMazeMain::MarbleMazeMain(const std::shared_ptr<DX::DeviceResources>& devic
     m_resetCamera = true;
     m_resetMarbleRotation = true;
 
-    // Checkpoints (from start to goal).
-    m_checkpoints.push_back(XMFLOAT3(45.7f, -43.6f, -45.0f)); // Start
-    m_checkpoints.push_back(XMFLOAT3(120.7f, -35.0f, -45.0f)); // Checkpoint 1
-    m_checkpoints.push_back(XMFLOAT3(297.6f, -194.6f, -45.0f)); // Checkpoint 2
-    m_checkpoints.push_back(XMFLOAT3(770.1f, -391.5f, -45.0f)); // Checkpoint 3
-    m_checkpoints.push_back(XMFLOAT3(552.0f, -148.6f, -45.0f)); // Checkpoint 4
-    m_checkpoints.push_back(XMFLOAT3(846.8f, -377.0f, -45.0f)); // Goal
+    auto jsonObject2 = FileUtils::loadJsonFile(L"MyCheckpoints.txt");
+
+    JsonArray^ y = jsonObject2->GetNamedArray("checkpoints");
+    
+    for (auto z : y) {
+        auto myJVal = z->GetArray();
+        auto n1 = myJVal->GetNumberAt(0);
+        auto n2 = myJVal->GetNumberAt(1);
+        auto n3 = myJVal->GetNumberAt(2);
+        m_checkpoints.push_back(XMFLOAT3(n1, n2, n3)); // Start
+    }
 
     m_persistentState = ref new PersistentState();
     m_persistentState->Initialize(Windows::Storage::ApplicationData::Current->LocalSettings->Values, "MarbleMaze");
